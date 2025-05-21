@@ -169,3 +169,16 @@ li button:hover {
   padding: 8px 12px;
   font-size: 14px;
 }
+
+.goal-controls {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.goal-controls input,
+.goal-controls button {
+  margin: 5px 0;
+  width: 60%;
+}
