@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-<div class="box">
-  <title>To Do List</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Missions</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
 </head>
 <body>
   <h1>Missions</h1>
-  <div class="todo-container">
-    <input type="text" id="todo-input" placeholder="Add Next Mission" />
-    <input type="number" id="points-input" placeholder="Points" min="1" value="1">
-    <button onclick="addTodo()">Add</button>
-    <ul id="todo-list"></ul>
+  <div class="box">
+    <div class="todo-container">
+      <input type="text" id="todo-input" placeholder="Add Next Mission" />
+      <input type="number" id="points-input" placeholder="Points" min="1" value="1" />
+      <button onclick="addTodo()">Add</button>
+      <ul id="todo-list"></ul>
+    </div>
+
+    <div id="progress-container">
+      <div id="progress-bar">0 / 100 pts</div>
+      <input type="number" id="goal-input" placeholder="Set goal points" min="1" value="100" />
+      <button onclick="setGoal()">Set Goal</button>
+    </div>
   </div>
-  <div id="progress-container">
-  <div id="progress-bar">0 / 100 pts</div>
-  <input type="number" id="goal-input" placeholder="Set goal points" min="1" value="10">
-  <button onclick="setGoal()">Set Goal</button>
-  </div>
-</div>
+
   <script src="script.js"></script>
 </body>
 </html>
