@@ -17,19 +17,33 @@ function renderTodos() {
     const li = document.createElement("li");
     li.className = todo.done ? "completed" : "";
 
-    li.textContent = todo.text;
-    li.onclick = () => toggleTodo(index);
+    const text = document.createElement("span");
+    text.textContent = `${todo.text} (${todo.points} pts)`;
+
+    const completeBtn = document.createElement("button");
+    completeBtn.textContent = "O";
+    completeBtn.style.backgroundColor = "green";
+    completeBtn.style.color = "white";
+    completeBtn.style.marginLeft = "10px";
+    completeBtn.onclick = (e) => {
+      e.stopPropagation();
+      toggleTodo(index);
+    };
 
     const del = document.createElement("button");
     del.textContent = "X";
+    del.style.marginLeft = "10px";
     del.onclick = (e) => {
       e.stopPropagation();
       deleteTodo(index);
     };
 
+    li.appendChild(text);
+    li.appendChild(completeBtn);
     li.appendChild(del);
     list.appendChild(li);
   });
+
   calculateCurrentPoints();
 }
 
