@@ -109,3 +109,15 @@ li button:hover {
   transition: width 0.3s ease;
 }
 
+.box {
+  background-color: rgba(0, 255, 255, 0.2);
+  border: 1px solid cyan;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 10px cyan;
+  width: 100%;
+  max-width: 600px;
+}
+
