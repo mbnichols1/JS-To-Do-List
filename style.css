@@ -87,3 +87,22 @@ li button {
 li button:hover {
   background-color: #c0392b;
 }
+#progress-container {
+  width: 100%;
+  max-width: 400px;
+  height: 25px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+#progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  text-align: center;
+  color: white;
+  line-height: 25px;
+  transition: width 0.3s ease;
+}
+
