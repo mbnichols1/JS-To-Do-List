@@ -119,5 +119,6 @@ li button:hover {
   box-shadow: 0 0 10px cyan;
   width: 100%;
   max-width: 600px;
+  text-align: center;
 }
 
