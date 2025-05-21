@@ -1,6 +1,9 @@
 body {
   font-family: 'Bebas Neue', sans-serif;
-  background-color: #003870;
+  background-image: url("https://img.freepik.com/free-vector/grey-hexagons-black-background_78370-2098.jpg?semt=ais_hybrid&w=740");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; 
   color: #333;
   margin: 0;
   padding: 0;
