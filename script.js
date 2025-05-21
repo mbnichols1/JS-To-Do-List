@@ -31,7 +31,7 @@ function addTodo() {
   const input = document.getElementById("todo-input");
   const text = input.value.trim();
   if (text) {
-    todos.push({ text, done: false });
+    todos.push({ text, done: false, points: 5});
     saveTodos();
     renderTodos();
     input.value = "";
