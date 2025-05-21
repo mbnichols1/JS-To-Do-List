@@ -93,8 +93,8 @@ li button:hover {
 }
 #progress-container {
   width: 100%;
-  max-width: 400px;
-  height: 25px;
+  max-width: 500px;
+  height: 50px;
   background-color: #ddd;
   border-radius: 10px;
   overflow: hidden;
