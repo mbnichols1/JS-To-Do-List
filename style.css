@@ -98,7 +98,7 @@ li button:hover {
   background-color: #ddd;
   border-radius: 10px;
   overflow: hidden;
-  margin-top: 20px;
+  margin: 20px auto;
 }
 
 #progress-bar {
