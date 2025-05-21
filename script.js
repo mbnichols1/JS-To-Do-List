@@ -17,7 +17,7 @@ function renderTodos() {
 
     const del = document.createElement("button");
     del.textContent = "X";
-    del.onClick = (e) => {
+    del.onclick = (e) => {
       e.stopPropagation();
       deleteTodo(index);
     };
@@ -28,7 +28,7 @@ function renderTodos() {
 }
 
 function addTodo() {
-  const input = docuent.getElementById("todo-input");
+  const input = document.getElementById("todo-input");
   const text = input.value.trim();
   if (text) {
     todos.push({ text, done: false });
