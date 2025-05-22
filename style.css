@@ -1,23 +1,24 @@
 body {
-  font-family: 'Bebas Neue', sans-serif;
-  background-image: url("https://wallpapercat.com/w/full/0/a/3/2118142-1920x1080-desktop-1080p-tech-wallpaper-image.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; 
-  color: #333;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
+    font-family: 'Bebas Neue', sans-serif;
+    background-image: url("https://i.redd.it/vo9vm1fcqrp71.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
 }
 
 h1 {
-  margin-top: 40px;
-  color: #7ecff7;
-  text-align: center;
-  font-size: 64px;
+    margin-top: 40px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 80px;
+    text-shadow: 0 0 5px #f00090, 0 0 10px #f00090, 0 0 20px #f00090, 0 0 30px #f00090, 0 0 40px #f00090;
 }
 
 .box {
@@ -88,12 +89,11 @@ button:hover {
 }
 
 ul#todo-list {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 20px;
-  width: 100%;
-  max-width: 500px;
-  text-align: left;
+    list-style-type: none;
+    padding: 0;
+    margin: 20px auto 0;
+    width: 100%;
+    max-width: 450px;
 }
 
 li {
@@ -103,7 +103,7 @@ li {
   padding: 10px 12px;
   border-radius: 6px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   transition: background-color 0.2s;
 }
@@ -132,7 +132,7 @@ li button:hover {
 
 #progress-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
   height: 25px;
   background-color: #ddd;
   border-radius: 10px;
@@ -140,6 +140,7 @@ li button:hover {
   margin: 20px auto 0;
   padding: 5px;
   position: relative;
+  box-shadow: 0 0 15px #f00090, 0 0 25px #f00090, 0 0 35px #f00090;
 }
 
 #progress-bar {
@@ -172,6 +173,7 @@ li button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 450px;
 }
 
 #goal-controls {
@@ -203,3 +205,22 @@ li button:hover {
   background-color: #2980b9;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
