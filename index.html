@@ -2,32 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Missions</title>
+  <title>ToDoList</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="box">
-    <h1>Missions</h1>
-    <div class="options">
-      <div id="goal-controls">
-      <input type="number" id="goal-input" placeholder="Set goal points" min="1" value="100" />
-      <button onclick="setGoal()">Set Goal</button>
-      </div>
-    </div>
-      
-    <div class="todo-container">
-      <input type="text" id="todo-input" placeholder="Add Next Mission" />
-      <input type="number" id="points-input" placeholder="Points" min="1" value="1" />
-      <button onclick="addTodo()">Add</button>
-      <ul id="todo-list"></ul>
+    <div class="box">
+        <h1>To Do list</h1>
+        <div class="options">
+            <div id="goal-controls">
+                <button onclick="openGoalModal()">Set Goal</button>
+                <button onclick="openAddMissionModal()">Add</button>
+                <button onclick="toggleRemoveMode()">Remove</button>
+            </div>
+        </div>
+        <div id="progress-container">
+            <div id="progress-bar">0 / 100 pts</div>
+        </div>
+
+        <div class="todo-container">
+            <ul id="todo-list"></ul>
+            <div id="remove-controls" style="display: none; text-align: center; margin-top: 10px;">
+                <button onclick="saveRemovedTasks()">Save Changes</button>
+            </div>
+
+        </div>
+
     </div>
 
-    <div id="progress-container">
-      <div id="progress-bar">0 / 100 pts</div>
-    </div>
-  </div>
+    <script src="script.js"></script>
 
-  <script src="script.js"></script>
+    <div id="goal-modal" class="modal">
+        <div class="modal-content">
+            <h2>Set Your Goal</h2>
+            <input type="number" id="goal-popup-input" placeholder="Enter goal points" min="1" />
+            <button onclick="saveGoalFromPopup()">Save Changes</button>
+            <button onclick="closeGoalModal()">Cancel</button>
+        </div>
+    </div>
+
+    <div id="add-mission-modal" class="modal">
+        <div class="modal-content">
+            <h2>Add New Task</h2>
+            <input type="text" id="mission-name-input" placeholder="Task Name" />
+            <input type="number" id="mission-points-input" placeholder="Points" min="1" />
+            <button onclick="saveMissionFromPopup()">Save Changes</button>
+            <button onclick="closeAddMissionModal()">Cancel</button>
+        </div>
+    </div>
+
+
 </body>
 </html>
