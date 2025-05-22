@@ -1,5 +1,8 @@
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 let goalPoints = parseInt(localStorage.getItem("goalPoints")) || 100;
+let removeMode = false;
+let tasksToRemove = new Set();
+
 
 function saveTodos() {
   localStorage.setItem("todos", JSON.stringify(todos));
@@ -10,42 +13,78 @@ function saveGoal() {
 }
 
 function renderTodos() {
-  const list= document.getElementById("todo-list");
-  list.innerHTML = "";
+    const list = document.getElementById("todo-list");
+    list.innerHTML = "";
 
-  todos.forEach((todo, index) => {
-    const li = document.createElement("li");
-    li.className = todo.done ? "completed" : "";
+    todos.forEach((todo, index) => {
+        const li = document.createElement("li");
+        li.className = todo.done ? "completed" : "";
 
-    const text = document.createElement("span");
-    text.textContent = `${todo.text} (${todo.points} pts)`;
 
-    const completeBtn = document.createElement("button");
-    completeBtn.textContent = "O";
-    completeBtn.style.backgroundColor = "green";
-    completeBtn.style.color = "white";
-    completeBtn.style.marginLeft = "10px";
-    completeBtn.onclick = (e) => {
-      e.stopPropagation();
-      toggleTodo(index);
-    };
+        li.onclick = () => {
+            if (!removeMode) {
+                toggleTodo(index);
+            }
+        };
 
-    const del = document.createElement("button");
-    del.textContent = "X";
-    del.style.marginLeft = "10px";
-    del.onclick = (e) => {
-      e.stopPropagation();
-      deleteTodo(index);
-    };
 
-    li.appendChild(text);
-    li.appendChild(completeBtn);
-    li.appendChild(del);
-    list.appendChild(li);
-  });
+        const pointsSpan = document.createElement("span");
+        pointsSpan.textContent = `${todo.points} `;
+        pointsSpan.style.color = "#f00090";  
+        pointsSpan.style.fontWeight = "bold";
+        pointsSpan.style.marginRight = "8px"; 
 
-  calculateCurrentPoints();
+        const textSpan = document.createElement("span");
+        textSpan.textContent = todo.text;
+
+        li.appendChild(pointsSpan); 
+        li.appendChild(textSpan);   
+
+        if (removeMode) {
+            const removeBtn = document.createElement("button");
+            removeBtn.textContent = tasksToRemove.has(index) ? "Undo Remove" : "Remove";
+            removeBtn.style.marginLeft = "10px";
+            removeBtn.style.backgroundColor = tasksToRemove.has(index) ? "orange" : "red";
+            removeBtn.style.color = "white";
+
+            removeBtn.onclick = (e) => {
+                e.stopPropagation(); 
+                if (tasksToRemove.has(index)) {
+                    tasksToRemove.delete(index);
+                } else {
+                    tasksToRemove.add(index);
+                }
+                renderTodos(); 
+            };
+
+            li.appendChild(removeBtn);
+        }
+
+        list.appendChild(li);
+    });
+
+    calculateCurrentPoints();
 }
+
+function toggleRemoveMode() {
+    removeMode = !removeMode;
+    tasksToRemove.clear();
+    document.getElementById("remove-controls").style.display = removeMode ? "block" : "none";
+    renderTodos();
+}
+
+function saveRemovedTasks() {
+    const indexesToRemove = Array.from(tasksToRemove).sort((a, b) => b - a);
+    for (const index of indexesToRemove) {
+        todos.splice(index, 1);
+    }
+    tasksToRemove.clear();
+    removeMode = false;
+    document.getElementById("remove-controls").style.display = "none";
+    saveTodos();
+    renderTodos();
+}
+
 
 function addTodo() {
   const input = document.getElementById("todo-input");
@@ -95,6 +134,52 @@ function calculateCurrentPoints() {
   bar.style.width = percent + "%";
   bar.textContent = `${currentPoints} / ${goalPoints} pts`;
 }
+
+function openGoalModal() {
+    document.getElementById("goal-modal").style.display = "flex";
+}
+
+function closeGoalModal() {
+    document.getElementById("goal-modal").style.display = "none";
+}
+
+function saveGoalFromPopup() {
+    const value = parseInt(document.getElementById("goal-popup-input").value);
+    if (!isNaN(value) && value > 0) {
+        goalPoints = value;
+        saveGoal();
+        calculateCurrentPoints();
+        closeGoalModal();
+    } else {
+        alert("Please enter a valid number greater than 0.");
+    }
+}
+
+function openAddMissionModal() {
+    document.getElementById("add-mission-modal").style.display = "flex";
+}
+
+function closeAddMissionModal() {
+    document.getElementById("add-mission-modal").style.display = "none";
+}
+
+function saveMissionFromPopup() {
+    const name = document.getElementById("mission-name-input").value.trim();
+    const points = parseInt(document.getElementById("mission-points-input").value);
+
+    if (name && !isNaN(points) && points > 0) {
+        todos.push({ text: name, points: points, done: false });
+        saveTodos();
+        renderTodos();
+        closeAddMissionModal();
+
+        document.getElementById("mission-name-input").value = "";
+        document.getElementById("mission-points-input").value = "";
+    } else {
+        alert("Please enter a valid mission name and points.");
+    }
+}
+
 
 
 renderTodos();
