@@ -30,7 +30,7 @@ function renderTodos() {
 
         const pointsSpan = document.createElement("span");
         pointsSpan.textContent = `${todo.points} `;
-        pointsSpan.style.color = "#f00090";  
+        pointsSpan.style.color = "#6192C1";  
         pointsSpan.style.fontWeight = "bold";
         pointsSpan.style.marginRight = "8px"; 
 
